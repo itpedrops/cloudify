@@ -5,12 +5,12 @@ inputs:
   use_existing_example_aws_dhcp_options_set:
     description: >
       If you have a DHCP Options set that you want to use this should be true.
-    default: false
+    default: true
 
   example_aws_dhcp_options_set_id:
     description: >
       If you changed the input use_existing_example_aws_dhcp_options_set, then you should put the DHCP Options Set ID here.
-    default: ''
+    default: 'dopt-a536f8dc'
 
   example_aws_dhcp_options_set_domain_name:
     default: 'ec2.internal'
@@ -42,4 +42,3 @@ outputs:
     description: AWS DHCP Options Set
     value:
       example_aws_dhcp_options_set: { get_attribute: [ example_aws_dhcp_options_set, aws_resource_id ] }
-
