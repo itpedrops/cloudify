@@ -10,7 +10,7 @@ inputs:
   existing_example_aws_elastic_ip:
     description: >
       If you changed use_existing_example_aws_elastic_ip to true, then this is the elastic ip ID.
-    default: 'eipalloc-02ef09a67a183fea9'
+    default: '18.215.6.185'
 
   existing_example_aws_elastic_ip_domain:
     default: 'vpc'

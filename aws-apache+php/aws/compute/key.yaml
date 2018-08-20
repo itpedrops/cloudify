@@ -7,8 +7,8 @@ inputs:
   example_aws_key:
     default: 'devops-skyone-solutions'
 
-#  example_aws_key_file:
-#    default: ~/.ssh/example-aws-key.pem
+  example_aws_key_file:
+    default: ~/.ssh/devops-skyone-solutions.pem
 
   example_aws_key_tags:
     default: { get_input: default_tags }
@@ -22,7 +22,7 @@ node_templates:
       use_external_resource: { get_input: use_existing_example_aws_key }
       resource_id: { get_input: example_aws_key }
       tags: { get_input: example_aws_key_tags }
-#      private_key_path: { get_input: example_aws_key_file }
+      private_key_path: { get_input: example_aws_key_file }
 
 outputs:
 

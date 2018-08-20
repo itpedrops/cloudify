@@ -4,4 +4,4 @@ imports:
   - vpc.yaml
   - dhcp-options-set.yaml
   - public-subnet/blueprint.yaml
-  - private-subnet/blueprint.yaml
+#  - private-subnet/blueprint.yaml
