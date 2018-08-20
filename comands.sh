@@ -10,7 +10,7 @@ Cloudify Manager 4.4 [ip=192.168.0.20]
 
 ## --list profiles
  $ cfy profiles list
- OUTPUT:
+ OUTPUT: 
  Listing all profiles...
 
 Profiles:
@@ -19,7 +19,7 @@ Profiles:
 +---------------+--------------+----------+-------------------------------------+----------+-----------+---------------+------------------+----------------+-----------------+
 | *manager-cfy | 10.10.10.10 |  centos  | /Users/user/path/key.pem       |    22    |     80    |      https    |      administrator       | default_tenant |     Complete    |
 +---------------+--------------+----------+-------------------------------------+----------+-----------+---------------+------------------+----------------+-----------------+
-
+´´´
 ## --list services manager 
  $ cfy status
   OUTPUT:
@@ -55,8 +55,16 @@ Initialization completed successfully
 Using manager 192.168.0.20 with port 80
 
 
-## -- Deploy blueprint
+## -- Deploy blueprint and create a deployment oneTIME
 
  $ cfy install PATH/blueprint.yaml -i PATH/inputs/inputs.yaml --task-retries=15 --task-retry-interval=15```
+ 
+## --Upload blueprint
+ $ cfy blueprints upload -b BLUEPRINT_NAME -p BLUEPRINT_FILE_LOCATION
+
+## --Create deployment
+ $ cfy deployments create -b BLUEPRINT_NAME DEPLOYMENT_NAME --inputs path/to/your/inputs.yaml
+ 
+ 
 
 Reference: https://docs.cloudify.co/4.0.0/cli/overview/
