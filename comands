@@ -10,7 +10,7 @@ Cloudify Manager 4.4 [ip=192.168.0.20]
 
 ## --list profiles
  $ cfy profiles list
- OUTPUT:
+ OUTPUT: 
  Listing all profiles...
 
 Profiles:
@@ -19,7 +19,7 @@ Profiles:
 +---------------+--------------+----------+-------------------------------------+----------+-----------+---------------+------------------+----------------+-----------------+
 | *manager-cfy | 10.10.10.10 |  centos  | /Users/user/path/key.pem       |    22    |     80    |      https    |      administrator       | default_tenant |     Complete    |
 +---------------+--------------+----------+-------------------------------------+----------+-----------+---------------+------------------+----------------+-----------------+
-
+´´´
 ## --list services manager 
  $ cfy status
   OUTPUT:
