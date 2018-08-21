@@ -29,8 +29,6 @@ node_templates:
     relationships:
       - target: example_aws_public_subnet
         type: cloudify.aws.relationships.connected_to_subnet
-      - type: cloudify.aws.relationships.connected_to_elastic_ip
-        target: example_aws_elastic_ip
       - type: cloudify.aws.relationships.connected_to_security_group
         target: example_aws_security_group
 

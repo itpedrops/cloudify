@@ -5,12 +5,12 @@ inputs:
   use_existing_example_aws_elastic_ip:
     description: >
       If you have an existing elastic ip attached to the nat instance that you want to use this should be true.
-    default: true
+    default: false
 
   existing_example_aws_elastic_ip:
     description: >
       If you changed use_existing_example_aws_elastic_ip to true, then this is the elastic ip ID.
-    default: '18.215.6.185'
+    default: ''
 
   existing_example_aws_elastic_ip_domain:
     default: 'vpc'

@@ -5,3 +5,4 @@ imports:
   - route-table.yaml
   - internet-gateway.yaml
   - public-network-interface.yaml
+  - public-network-interface2.yaml

@@ -22,18 +22,6 @@ inputs:
   example_aws_virtual_machine_tags:
     default: { get_input: default_tags }
 
-  number_of_instances:
-    description: |
-      The number of web server instances. Requests to the web servers will
-      be load balanced by the haproxy service.
-    type: integer
-    default: 2
-
-#  example_aws_virtual_machine_block_device_mapping:
-#    default:
-#     '/dev/sda1':
-#        delete_on_termination: true
-
 node_templates:
 
   example_aws_virtual_machine:
@@ -49,13 +37,10 @@ node_templates:
       image_id: { get_input: example_aws_virtual_machine_image_id }
       instance_type: { get_input: example_aws_virtual_machine_instance_type }
       parameters:
-#        block_device_map: { get_input: example_aws_virtual_machine_block_device_mapping }
         placement: { get_property: [ example_aws_public_subnet, availability_zone ] }
     relationships:
       - type: cloudify.aws.relationships.instance_connected_to_eni
         target: example_aws_public_network_interface
-#      - type: cloudify.aws.relationships.instance_connected_to_eni
-#        target: example_aws_private_network_interface
       - type: cloudify.aws.relationships.instance_connected_to_keypair
         target: example_aws_key
 
