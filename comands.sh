@@ -62,9 +62,16 @@ Using manager 192.168.0.20 with port 80
 ## --Upload blueprint
  $ cfy blueprints upload -b BLUEPRINT_NAME -p BLUEPRINT_FILE_LOCATION
 
+## --Delete blueprint
+ $ cfy blueprints delete aws 
+
 ## --Create deployment
  $ cfy deployments create -b BLUEPRINT_NAME DEPLOYMENT_NAME --inputs path/to/your/inputs.yaml
+
+## --Delete deployment
+ $ cfy deployments delete NOME-DEPLOYMENT
  
- 
+## -delete Deployment + ignore failure and Force
+ $ cfy executions start uninstall -f -d NAME-DEPLOYMENT -p ignore_failure=true
 
 Reference: https://docs.cloudify.co/4.0.0/cli/overview/
