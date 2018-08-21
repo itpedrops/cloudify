@@ -1,0 +1,7 @@
+tosca_definitions_version: cloudify_dsl_1_3
+
+imports:
+  - subnet.yaml
+  - route-table.yaml
+  - internet-gateway.yaml
+  - public-network-interface.yaml

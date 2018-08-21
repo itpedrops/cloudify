@@ -1,0 +1,38 @@
+tosca_definitions_version: cloudify_dsl_1_3
+
+inputs:
+
+  use_existing_example_aws_security_group:
+    description: >
+      If you have a VPC that you want to use this should be true.
+    default: true
+
+  example_aws_security_group_id:
+    description: >
+      If you changed the input use_existing_example_aws_security_group, then you should put the VPC ID here.
+    default: 'sg-1bbf0350'
+    
+  example_aws_sg_tags:
+    default: { get_input: default_tags }
+
+node_templates:
+
+  example_aws_security_group:
+    type: cloudify.aws.nodes.SecurityGroup
+    properties:
+      aws_config: { get_input: aws_configuration }
+      use_external_resource: { get_input: use_existing_example_aws_security_group }
+      resource_id: { get_input: example_aws_security_group_id }
+      description: Compute Security Group
+#      rules: { get_input: example_aws_security_group_rules }
+      tags: { get_input: example_aws_sg_tags }
+    relationships:
+      - type: cloudify.aws.relationships.security_group_contained_in_vpc
+        target: example_aws_vpc
+
+outputs:
+
+  example_aws_security_group:
+    description: AWS Security Group ID
+    value:
+      example_aws_security_group: { get_attribute: [ example_aws_security_group, aws_resource_id ] }
