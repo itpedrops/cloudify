@@ -1,0 +1,53 @@
+tosca_definitions_version: cloudify_dsl_1_3
+
+inputs:
+
+  use_existing_example_aws_virtual_machine2:
+    type: boolean
+    default: false
+
+  example_aws_virtual_machine2:
+    type: string
+    default: ''
+
+  example_aws_virtual_machine_image_id2:
+    default: ami-04681a1dbd79675a5 # Linux AMI - LATEST
+
+  example_aws_virtual_machine_instance_type2:
+    default: t2.micro
+
+  example_aws_virtual_machine_name2:
+    default: 'Linux-ami-apache-pedrops'
+
+  example_aws_virtual_machine_tags2:
+    default: { get_input: default_tags }
+
+node_templates:
+
+  example_aws_virtual_machine2:
+    type: cloudify.aws.nodes.Instance
+    properties:
+      aws_config: { get_input: aws_configuration }
+      use_external_resource: { get_input: use_existing_example_aws_virtual_machine2 }
+      resource_id: { get_input: example_aws_virtual_machine2 }
+      name: { get_input: example_aws_virtual_machine_name2 }
+      tags: { get_input: example_aws_virtual_machine_tags2 }
+      agent_config:
+        install_method: none
+      image_id: { get_input: example_aws_virtual_machine_image_id2 }
+      instance_type: { get_input: example_aws_virtual_machine_instance_type2 }
+      parameters:
+        placement: { get_property: [ example_aws_public_subnet, availability_zone ] }
+    relationships:
+      - type: cloudify.aws.relationships.instance_connected_to_eni
+        target: example_aws_public_network_interface2
+      - type: cloudify.aws.relationships.instance_connected_to_keypair
+        target: example_aws_key
+
+outputs:
+
+  example_aws_virtual_machine2:
+    description: AWS Example Instance
+    value:
+      example_aws_virtual_machine2: { get_attribute: [ example_aws_virtual_machine2, aws_resource_id ] }
+      example_aws_virtual_machine_private_ip: { get_attribute: [ example_aws_virtual_machine2, ip ] }

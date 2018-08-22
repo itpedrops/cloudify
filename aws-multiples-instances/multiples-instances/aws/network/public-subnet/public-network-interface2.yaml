@@ -1,0 +1,44 @@
+tosca_definitions_version: cloudify_dsl_1_3
+
+inputs:
+
+  use_existing_example_aws_public_network_interface2:
+    type: boolean
+    default: false
+
+  example_aws_public_network_interface2:
+    type: string
+    default: ''
+
+  example_aws_public_network_interface_tags2:
+    default: { get_input: default_tags }
+
+  example_aws_public_network_interface_parameters2:
+    default: {}
+
+node_templates:
+
+  example_aws_public_network_interface2:
+    type: cloudify.aws.nodes.Interface
+    properties:
+      aws_config: { get_input: aws_configuration }
+      use_external_resource: { get_input: use_existing_example_aws_public_network_interface2 }
+      resource_id: { get_input: example_aws_public_network_interface2 }
+      tags: { get_input: example_aws_public_network_interface_tags2 }
+      parameters: { get_input: example_aws_public_network_interface_parameters2 }
+    relationships:
+      - target: example_aws_public_subnet
+        type: cloudify.aws.relationships.connected_to_subnet
+      - type: cloudify.aws.relationships.connected_to_security_group
+        target: example_aws_security_group
+
+outputs:
+
+  example_aws_public_network_interface2:
+    description: AWS ENI
+    value:
+      example_aws_public_network_interface_private_ip: { get_attribute: [ example_aws_public_network_interface2, private_ip_address ] }
+      example_aws_public_network_interface_mac_address: { get_attribute: [ example_aws_public_network_interface2, mac_address ] }
+      example_aws_public_network_interface_subnet: { get_attribute: [ example_aws_public_network_interface2, subnet_id ] }
+      example_aws_public_network_interface_vpc: { get_attribute: [ example_aws_public_network_interface2, vpc_id ] }
+      example_aws_public_network_interface_groups: { get_attribute: [ example_aws_public_network_interface2, groups ] }
